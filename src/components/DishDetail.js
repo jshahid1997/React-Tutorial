@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Media, Card, CardImg, CardImgOverlay, CardTitle, CardBody, CardText } from 'reactstrap';
+import { Card, CardImg, CardTitle, CardBody, CardText } from 'reactstrap';
 
 class DishDetails extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class DishDetails extends Component {
             return (
                 <div key={com.id}>
                     <p>{com.comment}</p>
-                    <p> --{com.author}, {com.date}</p>
+                    <p> --{com.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(com.date)))}</p>
                 </div>
 
 
@@ -50,20 +50,23 @@ class DishDetails extends Component {
         const dish = this.props.selectedDish;
         if (dish != null) {
             return (
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <Card>
-                            <CardImg width="100%" src={dish.image} alt={dish.name} />
-                            <CardBody>
-                                <CardTitle>{dish.name}</CardTitle>
-                                <CardText>{dish.description}</CardText>
-                            </CardBody>
-                        </Card>
-                    </div>
-                    <div className="col-12 col-md-5 m-1">
-                        {this.renderComments()}
+                <div className='container'>
+                    <div className="row">
+                        <div className="col-12 col-md-5 m-1">
+                            <Card>
+                                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                                <CardBody>
+                                    <CardTitle>{dish.name}</CardTitle>
+                                    <CardText>{dish.description}</CardText>
+                                </CardBody>
+                            </Card>
+                        </div>
+                        <div className="col-12 col-md-5 m-1">
+                            {this.renderComments()}
+                        </div>
                     </div>
                 </div>
+
 
 
 
