@@ -8,7 +8,6 @@ function RenderMenuItem({ dish }) {
 
       <CardImgOverlay body className="ml-5">
         <CardTitle>{dish.name}</CardTitle>
-        {/* <p> {dish.description}</p> */}
       </CardImgOverlay>
     </Card>
   );
