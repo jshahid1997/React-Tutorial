@@ -10,7 +10,7 @@ import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Contact from "./ContactComponent";
-
+import DishDetails from "./DishDetail";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +32,22 @@ class Main extends Component {
         />
       );
     };
+
+    const DishWithId = ({ match }) => {
+      return (
+        <DishDetails
+          dish={
+            this.state.dishes.filter(
+              dish => dish.id === parseInt(match.params.dishId, 10)
+            )[0]
+          }
+          comments={this.state.comments.filter(
+            comment => comment.dishId === parseInt(match.params.dishId, 10)
+          )}
+        />
+      );
+    };
+
     return (
       <div>
         <Header />
@@ -42,7 +58,9 @@ class Main extends Component {
             path="/menu"
             component={() => <Menu dishes={this.state.dishes} />}
           />
+          <Route path="/menu/:dishId" component={DishWithId} />
           <Route path="/contactus" component={Contact} />
+
           <Redirect to="/home" />
         </Switch>
 
