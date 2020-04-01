@@ -53,7 +53,7 @@ class Contact extends Component {
             </BreadcrumbItem>
             <BreadcrumbItem active>Contact Us</BreadcrumbItem>
           </Breadcrumb>
-          <div classNam="col-12">
+          <div className="col-12">
             <h3>Contact Us</h3>
             <hr />
           </div>
@@ -111,13 +111,20 @@ class Contact extends Component {
           <div className="col-12 col-md-9">
             <LocalForm onSubmit={values => this.handleSubmit(values)}>
               <Row className="form-group">
-                <Label htmlFor="firstname" md={2}>First Name</Label>
+                <Label htmlFor="firstname" md={2}>
+                  First Name
+                </Label>
                 <Col md={10}>
-                  <Control.text model=".firstname" id="firstname" name="firstname"
+                  <Control.text
+                    model=".firstname"
+                    id="firstname"
+                    name="firstname"
                     placeholder="First Name"
                     className="form-control"
                     validators={{
-                      required, minLength: minLength(3), maxLength: maxLength(15)
+                      required,
+                      minLength: minLength(3),
+                      maxLength: maxLength(15)
                     }}
                   />
                   <Errors
@@ -125,21 +132,28 @@ class Contact extends Component {
                     model=".firstname"
                     show="touched"
                     messages={{
-                      required: 'Required',
-                      minLength: 'Must be greater than 2 characters',
-                      maxLength: 'Must be 15 characters or less'
+                      required: "Required",
+                      minLength: "Must be greater than 2 characters",
+                      maxLength: "Must be 15 characters or less"
                     }}
                   />
                 </Col>
               </Row>
               <Row className="form-group">
-                <Label htmlFor="lastname" md={2}>Last Name</Label>
+                <Label htmlFor="lastname" md={2}>
+                  Last Name
+                </Label>
                 <Col md={10}>
-                  <Control.text model=".lastname" id="lastname" name="lastname"
+                  <Control.text
+                    model=".lastname"
+                    id="lastname"
+                    name="lastname"
                     placeholder="Last Name"
                     className="form-control"
                     validators={{
-                      required, minLength: minLength(3), maxLength: maxLength(15)
+                      required,
+                      minLength: minLength(3),
+                      maxLength: maxLength(15)
                     }}
                   />
                   <Errors
@@ -147,21 +161,29 @@ class Contact extends Component {
                     model=".lastname"
                     show="touched"
                     messages={{
-                      required: 'Required',
-                      minLength: 'Must be greater than 2 characters',
-                      maxLength: 'Must be 15 characters or less'
+                      required: "Required",
+                      minLength: "Must be greater than 2 characters",
+                      maxLength: "Must be 15 characters or less"
                     }}
                   />
                 </Col>
               </Row>
               <Row className="form-group">
-                <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
+                <Label htmlFor="telnum" md={2}>
+                  Contact Tel.
+                </Label>
                 <Col md={10}>
-                  <Control.text model=".telnum" id="telnum" name="telnum"
+                  <Control.text
+                    model=".telnum"
+                    id="telnum"
+                    name="telnum"
                     placeholder="Tel. Number"
                     className="form-control"
                     validators={{
-                      required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                      required,
+                      minLength: minLength(3),
+                      maxLength: maxLength(15),
+                      isNumber
                     }}
                   />
                   <Errors
@@ -169,22 +191,28 @@ class Contact extends Component {
                     model=".telnum"
                     show="touched"
                     messages={{
-                      required: 'Required',
-                      minLength: 'Must be greater than 2 numbers',
-                      maxLength: 'Must be 15 numbers or less',
-                      isNumber: 'Must be a number'
+                      required: "Required",
+                      minLength: "Must be greater than 2 numbers",
+                      maxLength: "Must be 15 numbers or less",
+                      isNumber: "Must be a number"
                     }}
                   />
                 </Col>
               </Row>
               <Row className="form-group">
-                <Label htmlFor="email" md={2}>Email</Label>
+                <Label htmlFor="email" md={2}>
+                  Email
+                </Label>
                 <Col md={10}>
-                  <Control.text model=".email" id="email" name="email"
+                  <Control.text
+                    model=".email"
+                    id="email"
+                    name="email"
                     placeholder="Email"
                     className="form-control"
                     validators={{
-                      required, validEmail
+                      required,
+                      validEmail
                     }}
                   />
                   <Errors
@@ -192,8 +220,8 @@ class Contact extends Component {
                     model=".email"
                     show="touched"
                     messages={{
-                      required: 'Required',
-                      validEmail: 'Invalid Email Address'
+                      required: "Required",
+                      validEmail: "Invalid Email Address"
                     }}
                   />
                 </Col>
