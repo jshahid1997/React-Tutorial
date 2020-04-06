@@ -13,7 +13,7 @@ export const Comments = (
         ...state,
         isLoading: false,
         errMess: null,
-        dishes: action.payload,
+        comments: action.payload,
       };
     case ActionTypes.COMMENTS_FAILED:
       return {
