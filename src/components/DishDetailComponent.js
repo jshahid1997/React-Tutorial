@@ -13,16 +13,16 @@ import {
   Button,
   ModalHeader,
   ModalBody,
-  Label
+  Label,
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
-
+import { baseUrl } from "../shared/baseURL";
 import { Loading } from "./LoadingComponent";
 
-const required = val => val && val.length;
-const maxLength = len => val => !val || val.length <= len;
-const minLength = len => val => val && val.length >= len;
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !val || val.length <= len;
+const minLength = (len) => (val) => val && val.length >= len;
 
 class CommentForm extends Component {
   constructor() {
@@ -35,8 +35,8 @@ class CommentForm extends Component {
       touched: {
         rating: false,
         name: false,
-        comment: false
-      }
+        comment: false,
+      },
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,7 +44,7 @@ class CommentForm extends Component {
 
   toggleModal() {
     this.setState({
-      isModalOpen: !this.state.isModalOpen
+      isModalOpen: !this.state.isModalOpen,
     });
   }
   handleSubmit(values) {
@@ -66,7 +66,7 @@ class CommentForm extends Component {
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
           <ModalBody>
-            <LocalForm onSubmit={values => this.handleSubmit(values)}>
+            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
               <Row className="form-group">
                 <Label htmlFor="rating" md={12}>
                   Rating
@@ -100,7 +100,7 @@ class CommentForm extends Component {
                     validators={{
                       required,
                       minLength: minLength(3),
-                      maxLength: maxLength(15)
+                      maxLength: maxLength(15),
                     }}
                   />
                   <Errors
@@ -110,7 +110,7 @@ class CommentForm extends Component {
                     messages={{
                       required: "Required",
                       minLength: "Must be greater than 2 characters",
-                      maxLength: "Must be 15 characters or less"
+                      maxLength: "Must be 15 characters or less",
                     }}
                   />
                 </Col>
@@ -132,7 +132,7 @@ class CommentForm extends Component {
                     model=".comment"
                     show="touched"
                     messages={{
-                      required: "Required"
+                      required: "Required",
                     }}
                   />
                 </Col>
@@ -158,7 +158,7 @@ function RenderComments({ comment, addComment, dishId }) {
       <div>
         <h4> Comments </h4>
         <ul className="list-unstyled">
-          {comment.map(comments => {
+          {comment.map((comments) => {
             return (
               <li key={comment.id}>
                 <p>{comments.comment}</p>
@@ -168,7 +168,7 @@ function RenderComments({ comment, addComment, dishId }) {
                   {new Intl.DateTimeFormat("en-US", {
                     year: "numeric",
                     month: "short",
-                    day: "2-digit"
+                    day: "2-digit",
                   }).format(new Date(Date.parse(comments.date)))}
                 </p>
               </li>
@@ -183,7 +183,7 @@ function RenderComments({ comment, addComment, dishId }) {
   }
 }
 
-const DishDetails = props => {
+const DishDetails = (props) => {
   const dish = props.dish;
 
   if (props.isLoading) {
@@ -220,7 +220,12 @@ const DishDetails = props => {
         <div className="row">
           <div className="col-12 col-md-5 m-1">
             <Card>
-              <CardImg top width="100%" src={dish.image} alt={dish.name} />
+              <CardImg
+                top
+                width="100%"
+                src={baseUrl + dish.image}
+                alt={dish.name}
+              />
               <CardBody>
                 <CardTitle>{dish.name}</CardTitle>
                 <CardText>{dish.description}</CardText>
