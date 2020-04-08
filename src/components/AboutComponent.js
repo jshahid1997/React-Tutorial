@@ -5,33 +5,49 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Media
+  Media,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseURL";
+import { Loading } from "./LoadingComponent";
+import { Stagger, Fade } from "react-animation-components";
 
 function RenderLeader({ leaders }) {
-  const leader = leaders.map(lead => {
+  if (leaders.isLoading) {
+    return <Loading />;
+  } else if (leaders.errMess) {
+    return <h4>{leaders.errMess}</h4>;
+  } else {
     return (
-      <Media className="m-3">
-        <Media left href="#">
-          <img className="m-3" src={lead.image} alt={lead.name} />
+      <Stagger in>
+        <Media list>
+          <Fade in>
+            {leaders.leaders.map((lead) => {
+              return (
+                <Media className="m-3">
+                  <Media left href="#">
+                    <img
+                      className="m-3"
+                      src={baseUrl + lead.image}
+                      alt={lead.name}
+                    />
+                  </Media>
+                  <Media body>
+                    <Media heading>{lead.name}</Media>
+                    <h6>{lead.designation}</h6>
+                    {lead.description}
+                  </Media>
+                </Media>
+              );
+            })}
+          </Fade>
         </Media>
-        <Media body>
-          <Media heading>{lead.name}</Media>
-          <h6>{lead.designation}</h6>
-          {lead.description}
-        </Media>
-      </Media>
+      </Stagger>
     );
-  });
-  return <Media list>{leader}</Media>;
+  }
 }
 
 function About(props) {
-  const leaders = props.leaders.map(leader => {
-    return <p>Leader {leader.name}</p>;
-  });
-
   return (
     <div className="container">
       <div className="row">
